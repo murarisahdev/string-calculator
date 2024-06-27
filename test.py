@@ -51,6 +51,30 @@ class TestStringCalculator(unittest.TestCase):
         calculator = StringCalculator()
         self.assertEqual(calculator.add("//[**][%%]\n1**2%%3"), 6)
 
+    def test_zero_input(self):
+        # Test for zero input, should return 0
+        calculator = StringCalculator()
+        self.assertEqual(calculator.add("0"), 0)
+    
+    def test_multiple_delimiters_in_one_string(self):
+        # Test for multiple delimiters in one string
+        calculator = StringCalculator()
+        self.assertEqual(calculator.add("//[*][%]\n1*2%3*4%5"), 15)
+    
+    def test_only_delimiters(self):
+        # Test for input string containing only delimiters
+        calculator = StringCalculator()
+        self.assertEqual(calculator.add("//[*][%]\n"), 0)
+    
+    def test_new_line_at_the_end(self):
+        # Test for handling new lines at the end of the input string
+        calculator = StringCalculator()
+        self.assertEqual(calculator.add("1,2\n"), 3)
+    
+    def test_complex_delimiter_with_special_characters(self):
+        # Test for complex delimiters with many special characters
+        calculator = StringCalculator()
+        self.assertEqual(calculator.add("//[***][%%%]\n1***2%%%3"), 6)
 
 if __name__ == '__main__':
     unittest.main()
