@@ -57,5 +57,9 @@ class TestStringCalculator(unittest.TestCase):
     
     def test_custom_delimiter_with_newlines(self):
         self.assertEqual(self.calculator.add("//;\n30;\n\n20"), 50)
+
+    def test_pipe_separator(self):
+        self.assertEqual(self.calculator.add("//|25|25"),50)
+        
 if __name__ == '__main__':
     unittest.main()
